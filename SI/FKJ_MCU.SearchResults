@@ -1,0 +1,8 @@
+---- cellState.remainCharge Matches (7 in 2 files) ----
+Cmd.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        txdMsg->pkt.msg.para[2] = cellState.remainCharge;
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):            if (cellState.remainCharge < 100) {
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    if (temp != cellState.remainCharge) {
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        cellState.remainCharge = temp;
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        if ((CHARGE_DONE == cellState.chargeState)||(100 == cellState.remainCharge)) {
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        } else if (cellState.remainCharge == 0) {     //µçÁ¿µÍ--ºìÉ«100mSÉÁË¸
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):            if ((CHARGE_DONE == cellState.chargeState)||(100 == cellState.remainCharge))

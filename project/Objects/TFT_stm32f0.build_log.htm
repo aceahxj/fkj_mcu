@@ -1,0 +1,104 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.13.0.0
+Copyright (C) 2014 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: xxjj hhuu, Microsoft, LIC=50DY8-3LRWU-15RTV-PZW1X-NH0EX-528UT
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.13.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         SARMCM3.DLL V5.13.0.0
+Dialog DLL:      DARMCM1.DLL V1.12.0.0
+Target DLL:      UL2CM3.DLL V1.154.12.0
+Dialog DLL:      TARMCM1.DLL V1.9.0.0
+ 
+<h2>Project:</h2>
+E:\work\product\fkj\firmware\fkj_mcu\project\fkj_mcu.uvprojx
+Project File Date:  01/22/2017
+
+<h2>Output:</h2>
+Build target 'fkj_mcu'
+compiling systemwork.c...
+compiling interrupt.c...
+..\Driver\src\interrupt.c(47): error:  #20: identifier "KEYSTATE" is undefined
+  static KEYSTATE key_driver(void)
+..\Driver\src\interrupt.c(52): error:  #20: identifier "KEYSTATE" is undefined
+        KEYSTATE key_return = NONE_KEY;
+..\Driver\src\interrupt.c(54): error:  #20: identifier "lcdclass" is undefined
+      if (lcdclass.userpress == KEY_MAIN)                        //判断要读的按键I/O电平,按下为0
+..\Driver\src\interrupt.c(56): error:  #20: identifier "PRESS_DOWN" is undefined
+      else if (lcdclass.userpress == PRESS_DOWN)
+..\Driver\src\interrupt.c(58): error:  #20: identifier "PRESS_SELECT" is undefined
+      else if (lcdclass.userpress == PRESS_SELECT)
+..\Driver\src\interrupt.c(60): error:  #20: identifier "PRESS_UP" is undefined
+        else if (lcdclass.userpress == PRESS_UP)
+..\Driver\src\interrupt.c(77): warning:  #223-D: function "speakersend_gpiospi" declared implicitly
+              speakersend_gpiospi(KEY_PRESS_VOICE);
+..\Driver\src\interrupt.c(77): error:  #20: identifier "KEY_PRESS_VOICE" is undefined
+              speakersend_gpiospi(KEY_PRESS_VOICE);
+..\Driver\src\interrupt.c(89): error:  #20: identifier "lcdclass" is undefined
+                if ((lcdclass.userpress == PRESS_MAIN) || (lcdclass.userpress == PRESS_SELECT)) {
+..\Driver\src\interrupt.c(89): error:  #20: identifier "PRESS_MAIN" is undefined
+                if ((lcdclass.userpress == PRESS_MAIN) || (lcdclass.userpress == PRESS_SELECT)) {
+..\Driver\src\interrupt.c(89): error:  #20: identifier "PRESS_SELECT" is undefined
+                if ((lcdclass.userpress == PRESS_MAIN) || (lcdclass.userpress == PRESS_SELECT)) {
+..\Driver\src\interrupt.c(115): error:  #20: identifier "lcdclass" is undefined
+      lcdclass.timecount = 0;
+..\Driver\src\interrupt.c(117): error:  #20: identifier "BKLIGHT_HIGH" is undefined
+        if (BKLIGHT_HIGH != bklighttype) {
+..\Driver\src\interrupt.c(117): error:  #20: identifier "bklighttype" is undefined
+        if (BKLIGHT_HIGH != bklighttype) {
+..\Driver\src\interrupt.c(118): error:  #20: identifier "bklighttestflag" is undefined
+                bklighttestflag = 1;
+..\Driver\src\interrupt.c(121): error:  #20: identifier "MENU_STOP" is undefined
+        if (lcdclass.sysmenu == MENU_STOP) {
+..\Driver\src\interrupt.c(122): error:  #20: identifier "PRESS_NULL" is undefined
+                lcdclass.userpress = PRESS_NULL;
+..\Driver\src\interrupt.c(125): error:  #20: identifier "SYSTEMKEY" is undefined
+        lcdclass.syskey = (SYSTEMKEY)(lcdclass.userpress);        /*用户按下的功能键*/
+..\Driver\src\interrupt.c(126): error:  #20: identifier "MENU_RESULT" is undefined
+                if (lcdclass.sysmenu == MENU_RESULT) {
+..\Driver\src\interrupt.c(127): error:  #20: identifier "KEY_DOWNTASK" is undefined
+                        if ((KEY_DOWNTASK == lcdclass.syskey) ||        \
+..\Driver\src\interrupt.c(128): error:  #20: identifier "KEY_UPTASK" is undefined
+                                (KEY_UPTASK == lcdclass.syskey) ||              \
+..\Driver\src\interrupt.c(129): error:  #20: identifier "KEY_SELECT" is undefined
+                                (KEY_SELECT == lcdclass.syskey)) {
+..\Driver\src\interrupt.c(130): error:  #20: identifier "mutex" is undefined
+                                mutex++;
+..\Driver\src\interrupt.c(133): error:  #20: identifier "PRESS_NULL" is undefined
+        lcdclass.userpress = PRESS_NULL;
+..\Driver\src\interrupt.c(284): error:  #20: identifier "waitReply" is undefined
+      if (waitReply.replyFlag)
+..\Driver\src\interrupt.c(298): error:  #20: identifier "lcdclass" is undefined
+      lcdclass.userkey = key_driver();
+..\Driver\src\interrupt.c(308): warning:  #223-D: function "longtask" declared implicitly
+                longtask();
+..\Driver\src\interrupt.c(359): error:  #20: identifier "lcdclass" is undefined
+        if (lcdclass.sysmenu != MENU_STOP)
+..\Driver\src\interrupt.c(359): error:  #20: identifier "MENU_STOP" is undefined
+        if (lcdclass.sysmenu != MENU_STOP)
+..\Driver\src\interrupt.c(361): error:  #20: identifier "PRESS_MAIN" is undefined
+                lcdclass.userpress = PRESS_MAIN;
+..\Driver\src\interrupt.c(365): error:  #20: identifier "PRESS_MAIN" is undefined
+                lcdclass.userpress = PRESS_MAIN;
+..\Driver\src\interrupt.c: 2 warnings, 29 errors
+".\Objects\fkj_mcu.axf" - 29 Error(s), 2 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  E:\work\product\fkj\firmware\fkj_mcu\project\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+</pre>
+</body>
+</html>
