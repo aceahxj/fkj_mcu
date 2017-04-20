@@ -1,8 +1,7 @@
----- cellState.remainCharge Matches (7 in 2 files) ----
-Cmd.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        txdMsg->pkt.msg.para[2] = cellState.remainCharge;
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):            if (cellState.remainCharge < 100) {
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    if (temp != cellState.remainCharge) {
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        cellState.remainCharge = temp;
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        if ((CHARGE_DONE == cellState.chargeState)||(100 == cellState.remainCharge)) {
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        } else if (cellState.remainCharge == 0) {     //电量低--红色100mS闪烁
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):            if ((CHARGE_DONE == cellState.chargeState)||(100 == cellState.remainCharge))
+---- BATTERY_FULL Matches (6 in 2 files) ----
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        if ((CHARGE_DONE == cellState.chargeState)||(cellState.voltage > BATTERY_FULL)) {
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):            if (cellState.voltage < BATTERY_FULL_HOLD)
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):            if ((CHARGE_DONE == cellState.chargeState)||(cellState.voltage > BATTERY_FULL))
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                if (cellState.voltage < BATTERY_FULL_HOLD)
+Systemwork.h (e:\work\product\fkj\firmware\fkj_mcu\user\inc):#define BATTERY_FULL		 13606u                     //电池正常电压4.15v
+Systemwork.h (e:\work\product\fkj\firmware\fkj_mcu\user\inc):#define BATTERY_FULL_HOLD	 13442u                     //电池正常电压4.10V

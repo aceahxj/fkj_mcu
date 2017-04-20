@@ -53,9 +53,9 @@ void PowerOn_Test(void)
 {
 	if (RTC_ReadBackupRegister(RTC_BKP_DR0) != RTC_BKP_VALUE) {
         RTC_WriteBackupRegister(RTC_BKP_DR0, RTC_BKP_VALUE);
-		instState = ST_OFFLINE;//instState = ST_STOP;;	//系统掉电复位准备进入Stop
+		instState = ST_STOP;;	 //系统掉电复位准备进入Stop
 	} else {
-		instState = ST_OFFLINE;  //开门狗复位，转到唤醒状态
+		instState = ST_OFFLINE;  //开机键或看门狗复位，转到唤醒状态
 	}
 }
 
@@ -223,22 +223,6 @@ void pre_charge_init(void)
 }
 
 /**************************************************************
-*  Function Name         :   void stop_with_red_on(void)
-*  Param                 :   void
-*  Return Param          :   void
-*  Description           :   Stop时红灯亮
-***************************************************************/
-void stop_with_red_on(void)
-{
-    GPIO_InitTypeDef GPIO_InitStruct;
-
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_1;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_DOWN;
-    GPIO_Init(GPIOB,&GPIO_InitStruct);
-}
-
-/**************************************************************
 *  Function Name         :   void charge_vol(void)
 *  Param                 :   void
 *  Return Param          :   void
@@ -360,6 +344,21 @@ static void timeout_polling(void)
 }
 
 /**************************************************************
+*  Function Name         :   send_remainCharge
+*  Param                 :   void
+*  Return Param          :
+*  Description           :
+***************************************************************/
+void send_remainCharge(void)
+{
+	uart1_send_char(((cellState.remainCharge%1000)/100) + 48);
+	uart1_send_char(((cellState.remainCharge%100)/10) + 48);
+	uart1_send_char((cellState.remainCharge%10) + 48);
+    uart1_send_char(0x0d);
+    uart1_send_char(0x0a);
+}
+
+/**************************************************************
 *  Function Name         :   void systemtask(void)
 *  Param                 :   void
 *  Return Param          :   void
@@ -382,6 +381,10 @@ void system_task(void)
         led_manage();
     }
     work_task();
+
+    #ifdef DEBUG
+        send_remainCharge();
+    #endif
 }
 
 /**************************************************************
@@ -466,7 +469,7 @@ static void key_task(void)
                     if ((ST_WORK == instState)||(ST_IDLE == instState)) {
                         keyHandleInfor.keyCmd = CMD_ZOOM_OUT;
                     }
-                } else if (keyHandleInfor.keyType == LONG_KEY) {
+                } else if ((keyHandleInfor.keyType == LONG_KEY)&&(ST_NO_ACTION == actionState)){
                     if (ST_IDLE == instState) {
                         keyHandleInfor.keyCmd = CMD_VIDEO;      //切换到视频模式
                     } else if (ST_WORK == instState) {
@@ -666,7 +669,7 @@ static void work_task(void)
 ***************************************************************/
 void get_cell_state(void)
 {
-    INT16U rrt;
+    //INT16U rrt;
     INT8U  temp;
 
     cellState.chargeState = CHARGE_STOP;
@@ -675,15 +678,15 @@ void get_cell_state(void)
     if (!CHRG_STA2())
         cellState.chargeState &= 0xfd;
     cellState.voltage = cell_vol_read();
-    rrt =  cell_rrt_read();                 //最高位报警位
-    cellState.remainTime = rrt & 0x7fff;
-    cellState.alert = rrt >> 15;
+    //rrt =  cell_rrt_read();                 //最高位报警位
+    //cellState.remainTime = rrt & 0x7fff;
+    //cellState.alert = rrt >> 15;
     temp = cell_soc_read();
     if (temp != cellState.remainCharge) {
         cellState.remainCharge = temp;
         send_status();    //电量变化发送
     }
-    //<3.40v >3.45v 关机
+    //<3.40v 关机
     if (cellState.voltage < BATTERY_LOWEST) {
         threebuzzeorange();
         led_off();          //先关显示
@@ -701,7 +704,7 @@ void led_manage(void)
 {
     //红色指示灯
     if(chargeFlag) { //充电
-        if ((CHARGE_DONE == cellState.chargeState)||(cellState.remainCharge > 98)) {
+        if ((CHARGE_DONE == cellState.chargeState)||(cellState.remainCharge > 95)) {
             redLedDisp.ledType = LED_OFF;        //充满--红色灭
         } else {
             redLedDisp.ledType = LED_FLASH1000;  //充电中--红色秒闪
@@ -709,10 +712,10 @@ void led_manage(void)
     } else {
         if (selfInfor.fault) {
             redLedDisp.ledType = LED_ON;         //自检异常--红色常量
-        } else if (cellState.remainCharge == 0) {     //电量低--红色100mS闪烁
-            redLedDisp.ledType = LED_FLASH100;
-        } else {
+        } else if (cellState.voltage > BATTERY_LOW) {
             redLedDisp.ledType = LED_OFF;        //正常--红色灭
+        } else if (cellState.voltage < BATTERY_LOW_HOLD) {
+            redLedDisp.ledType = LED_FLASH100;   //电量低--红色100mS闪烁
         }
     }
     //绿色指示灯
@@ -720,10 +723,10 @@ void led_manage(void)
         greenLedDisp.ledType = LED_OFF;             //自检异常--绿色灭
     } else {
         if (instState == ST_CHARGING) {
-            if ((CHARGE_DONE == cellState.chargeState)||(cellState.remainCharge > 98))
+            if ((CHARGE_DONE == cellState.chargeState)||(cellState.remainCharge > 95))
                 greenLedDisp.ledType = LED_ON;      //充满绿灯亮
             else
-                greenLedDisp.ledType = LED_OFF;     //关机充电不亮
+                greenLedDisp.ledType = LED_OFF;
         } else if(actionState == ST_PRINTING) {
             greenLedDisp.ledType = LED_FLASH300;    //打印300mS闪烁
         } else if(actionState == ST_CAPTURING) {

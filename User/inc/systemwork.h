@@ -27,7 +27,7 @@
 
 #include "lib_type.h"
 
-
+//#define DEBUG
 
 /*仪器状态*/
 typedef enum {
@@ -185,8 +185,12 @@ typedef enum
 #define OFFLINE                 0
 #define ONLINE                  1
 
-#define BATTERY_LOWEST       11147                      //电池红色电压3.4V，0.305mV/LSB
-#define BATTERY_LOW_HOLD     11311                      //电池橙色电压3.45V
+#define BATTERY_LOWEST       11147u                     //电池关机电压3.4V，0.305mV/LSB
+#define BATTERY_LOW          11803u                     //电池退出警告电压3.60V
+#define BATTERY_LOW_HOLD     11311u                     //电池警告电压3.45V
+#define BATTERY_FULL		 13606u                     //电池正常电压4.15v
+#define BATTERY_FULL_HOLD	 13442u                     //电池正常电压4.10V
+
 #define PRE_CHARGE_V1        8196                       //2.5V  预充59秒
 #define PRE_CHARGE_V2        8525                       //2.6V  预充30秒
 #define PRE_CHARGE_V3        8852                       //2.7V  预充20秒
@@ -225,7 +229,6 @@ void reset_system(void);
 void key_open_system(void);
 void pre_charge_init(void);
 void charge_vol(void);
-void stop_with_red_on(void);
 void system_task(void);
 static void key_task(void);
 static void work_task(void);

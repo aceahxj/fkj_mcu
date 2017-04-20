@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\fkj_mcu.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\fkj_mcu.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Wed Apr 12 17:50:00 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Wed Apr 19 10:04:41 2017
 <BR><P>
 <H3>Maximum Stack Usage =        148 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1044,8 +1044,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_ByteRead
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_cell_state
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;charge_vol
+<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;charge_vol
 </UL>
 
 <P><STRONG><a name="[94]"></a>cell_soc_read</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, cw2015_i2c.o(i.cell_soc_read))
@@ -1148,14 +1147,13 @@ Global Symbols
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 
-<P><STRONG><a name="[a0]"></a>get_cell_state</STRONG> (Thumb, 134 bytes, Stack size 16 bytes, systemwork.o(i.get_cell_state))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = get_cell_state &rArr; cell_vol_read &rArr; I2C_ByteRead &rArr; I2C_SendByte &rArr; I2C_Delay &rArr; delay_us
+<P><STRONG><a name="[a0]"></a>get_cell_state</STRONG> (Thumb, 116 bytes, Stack size 8 bytes, systemwork.o(i.get_cell_state))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = get_cell_state &rArr; cell_vol_read &rArr; I2C_ByteRead &rArr; I2C_SendByte &rArr; I2C_Delay &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;threebuzzeorange
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_status
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cell_vol_read
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cell_soc_read
-<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cell_rrt_read
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_off
 </UL>
 <BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_task
@@ -1198,7 +1196,7 @@ Global Symbols
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI0_1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[bb]"></a>led_manage</STRONG> (Thumb, 206 bytes, Stack size 0 bytes, systemwork.o(i.led_manage))
+<P><STRONG><a name="[bb]"></a>led_manage</STRONG> (Thumb, 218 bytes, Stack size 0 bytes, systemwork.o(i.led_manage))
 <BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_task
 </UL>
 
@@ -1463,7 +1461,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_system
 </UL>
 
-<P><STRONG><a name="[aa]"></a>key_task</STRONG> (Thumb, 574 bytes, Stack size 8 bytes, systemwork.o(i.key_task))
+<P><STRONG><a name="[aa]"></a>key_task</STRONG> (Thumb, 582 bytes, Stack size 8 bytes, systemwork.o(i.key_task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = key_task &rArr; send_key_value &rArr; msgsend
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoshortbuzze
