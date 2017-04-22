@@ -42,6 +42,35 @@
 void state_led_manage(void);
 void misc_task(void);
 
+/**************************************************************
+*  Function Name         :   void Reset_Init(void)
+*  Param                 :   void
+*  Return Param          :   void
+*  Description           :   复位初始化
+***************************************************************/
+void Reset_Init(void)
+{
+    //初始化LED
+    LED_RED_OFF();
+    LED_GREEN_OFF();
+    //状态指示灯
+    redLedDisp.ledType = LED_OFF;
+    redLedDisp.state = LED_OFF;
+    redLedDisp.timeCount = 0;
+    greenLedDisp.ledType = LED_OFF;
+    greenLedDisp.state = LED_OFF;
+    greenLedDisp.timeCount = 0;
+    //关光照，默认白光
+    LIGHT_OFF();
+    BOTH_OFF();
+    lightState = LIGHT_WHITE;
+    wifiState = OFFLINE;
+    duckState = DUCK_ON;
+    GC65_POWER_OFF();
+    GC65_PWRKEY_OFF();
+    instState = ST_OFFLINE;     //开机键或看门狗复位，转到唤醒状态
+    TIM_Cmd(TIM16,ENABLE);      //100mS定时开启
+}
 
 /**************************************************************
 *  Function Name         :   void PowerOn_Test(void)
@@ -55,7 +84,20 @@ void PowerOn_Test(void)
         RTC_WriteBackupRegister(RTC_BKP_DR0, RTC_BKP_VALUE);
 		instState = ST_STOP;;	 //系统掉电复位准备进入Stop
 	} else {
-		instState = ST_OFFLINE;  //开机键或看门狗复位，转到唤醒状态
+        GPIO_Configuration();
+        CHARGE_ON();
+        MB_POWER_ON();             //开启主板电源，等待主机启动
+        SENSOR_POWER_ON();         //开启Sensor电源，准备进入视频模式
+        //wwdg_init(0x7F, 0x50, WWDG_Prescaler_8);
+        ADC_Configer();
+        Key_Configer();
+        Uart1_Configer();
+        cw_alert_config(1);         //报警设置0%电量
+        cw_mode_set(CW_WAKEUP);     //唤醒电量计
+        //cell_vol_test();          //电池保护关机，如果恢复会掉电进入待机，不用出现启动后再保护的循环
+        Timer_Configer();
+	    onelongbuzze();             //启动长鸣
+	    Reset_Init();
 	}
 }
 
@@ -91,39 +133,13 @@ void Charge_Test(void)
 	}
 }
 
-
-
+#if 0
 /**************************************************************
-*  Function Name         :   void Reset_Init(void)
+*  Function Name         :   void cell_vol_test(void)
 *  Param                 :   void
 *  Return Param          :   void
-*  Description           :   复位初始化
+*  Description           :   系统复位检测电池电压
 ***************************************************************/
-void Reset_Init(void)
-{
-    //初始化LED
-    LED_RED_OFF();
-    LED_GREEN_OFF();
-    //状态指示灯
-    redLedDisp.ledType = LED_OFF;
-    redLedDisp.state = LED_OFF;
-    redLedDisp.timeCount = 0;
-    greenLedDisp.ledType = LED_OFF;
-    greenLedDisp.state = LED_OFF;
-    greenLedDisp.timeCount = 0;
-    //关光照，默认白光
-    LIGHT_OFF();
-    BOTH_OFF();
-    lightState = LIGHT_WHITE;
-    wifiState = OFFLINE;
-    duckState = DUCK_ON;
-    //MB_POWER_OFF();
-    GC65_POWER_OFF();
-    GC65_PWRKEY_OFF();
-    //SENSOR_POWER_OFF();
-    TIM_Cmd(TIM16,ENABLE);      //100mS定时开启
-}
-
 static void cell_vol_test(void)
 {
     cellState.voltage = cell_vol_read();
@@ -134,6 +150,7 @@ static void cell_vol_test(void)
 	    instState = ST_OFFLINE;
 	}
 }
+#endif
 
 /**************************************************************
 *  Function Name         :   void reset_system(void)
@@ -145,26 +162,12 @@ void reset_system(void)
 {
 	mydelayms(10);
     RCC_Configer();
-	//wwdg_init(0x7F, 0x50, WWDG_Prescaler_8);
-    delay_init(8);             //系统内部时钟8MHz,未倍频
-    GPIO_Configuration();
-    CHARGE_ON();
-    MB_POWER_ON();             //开启主板电源，等待主机启动
-    SENSOR_POWER_ON();         //开启Sensor电源，准备进入视频模式
-	//wwdg_init(0x7F, 0x50, WWDG_Prescaler_8);
-    ADC_Configer();
-    Key_Configer();
-    Uart1_Configer();
-    cw_alert_config(1);         //报警设置0%电量
-    cw_mode_set(CW_WAKEUP);     //唤醒电量计
-    cell_vol_test();            //电池电压测试
-    Timer_Configer();
     Rtc_Configer();
+	//wwdg_init(0x7F, 0x50, WWDG_Prescaler_8);
+    delay_init(8);     //系统内部时钟8MHz,未倍频
 
-    onelongbuzze();             //启动长鸣
 	//ResetMode_Test();
-	Reset_Init();
-    PowerOn_Test();    //检测是否掉电更换电池还是看门狗复位
+    PowerOn_Test();    //检测是否掉电更换电池还是开机键启动或看门狗复位
     Charge_Test();
 }
 
@@ -218,6 +221,10 @@ void pre_charge_init(void)
     GPIO_InitStruct.GPIO_OType = GPIO_OType_OD;
     GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+    #ifdef DEBUG
+    Uart1_Configer();
+    #endif
+
     cw_mode_set(CW_WAKEUP);               //唤醒电量计
     TIM_Cmd(TIM16,ENABLE);                //100mS定时开启
 }
@@ -235,7 +242,7 @@ void charge_vol(void)
         cellState.chargeState &= 0xfe;
     if (!CHRG_STA2())
         cellState.chargeState &= 0xfd;
-    cellState.remainTime = cell_rrt_read()&0x7fff;  //最高位报警位
+    cellState.remainCharge = cell_soc_read();
     cellState.voltage = cell_vol_read();
     #if 0
     wakeupFlag = 0;
@@ -366,6 +373,8 @@ void send_remainCharge(void)
 ***************************************************************/
 void system_task(void)
 {
+    work_task();
+
     if ((instState != ST_CHARGING)&&(instState != ST_STOP)) {
         //按键处理
         key_task();
@@ -380,7 +389,6 @@ void system_task(void)
     if (instState != ST_STOP) {
         led_manage();
     }
-    work_task();
 
     #ifdef DEBUG
         send_remainCharge();
@@ -412,12 +420,12 @@ void LED_pulse(INT8U upDown)
 }
 
 /**************************************************************
-*  Function Name         :   reseet_charge
+*  Function Name         :   reset_charge
 *  Param                 :   void
 *  Return Param          :   void
 *  Description           :   复位充电芯片
 ***************************************************************/
-void reseet_charge(void)
+void reset_charge(void)
 {
     CLI();
     CHARGE_OFF();
@@ -704,7 +712,7 @@ void led_manage(void)
 {
     //红色指示灯
     if(chargeFlag) { //充电
-        if ((CHARGE_DONE == cellState.chargeState)||(cellState.remainCharge > 95)) {
+        if ((CHARGE_DONE == cellState.chargeState)||(cellState.remainCharge > 98)) {
             redLedDisp.ledType = LED_OFF;        //充满--红色灭
         } else {
             redLedDisp.ledType = LED_FLASH1000;  //充电中--红色秒闪
@@ -723,7 +731,7 @@ void led_manage(void)
         greenLedDisp.ledType = LED_OFF;             //自检异常--绿色灭
     } else {
         if (instState == ST_CHARGING) {
-            if ((CHARGE_DONE == cellState.chargeState)||(cellState.remainCharge > 95))
+            if ((CHARGE_DONE == cellState.chargeState)||(cellState.remainCharge > 98))
                 greenLedDisp.ledType = LED_ON;      //充满绿灯亮
             else
                 greenLedDisp.ledType = LED_OFF;

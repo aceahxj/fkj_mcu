@@ -239,6 +239,6 @@ void duck_detect(void);
 void led_show(INT8U ledId, LedType ledType);
 void led_off(void);
 void sys_enterstop(void);
-void reseet_charge(void);
+void reset_charge(void);
 
 #endif

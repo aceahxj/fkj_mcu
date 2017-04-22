@@ -172,7 +172,7 @@
           <Type>0</Type>
           <LineNumber>69</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134229304</Address>
+          <Address>134229308</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -402,7 +402,7 @@
         <Mm>
           <WinNumber>1</WinNumber>
           <SubType>0</SubType>
-          <ItemText>\\fkj_mcu\../User/src/msg.c\waitAction.timeCount</ItemText>
+          <ItemText>0x40002850</ItemText>
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow1>
