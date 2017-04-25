@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\fkj_mcu.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\fkj_mcu.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Apr 20 17:42:34 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Tue Apr 25 09:52:14 2017
 <BR><P>
 <H3>Maximum Stack Usage =        156 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -774,7 +774,7 @@ Global Symbols
 <P><STRONG><a name="[18]"></a>TIM14_IRQHandler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, interrupt.o(i.TIM14_IRQHandler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f0xx.o(RESET)
 </UL>
-<P><STRONG><a name="[1a]"></a>TIM16_IRQHandler</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, interrupt.o(i.TIM16_IRQHandler))
+<P><STRONG><a name="[1a]"></a>TIM16_IRQHandler</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, interrupt.o(i.TIM16_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = TIM16_IRQHandler &rArr; state_led_show &rArr; __ARM_common_switch8
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;state_led_show
@@ -1209,6 +1209,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_cmd
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_cell_state
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;work_task
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timeout_polling
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_task
 <LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI4_15_IRQHandler
 </UL>
@@ -1416,6 +1417,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_cmd
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timeout_polling
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_task
 </UL>
 
@@ -1441,7 +1443,7 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[a9]"></a>key_task</STRONG> (Thumb, 582 bytes, Stack size 8 bytes, systemwork.o(i.key_task))
+<P><STRONG><a name="[a9]"></a>key_task</STRONG> (Thumb, 588 bytes, Stack size 8 bytes, systemwork.o(i.key_task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = key_task &rArr; send_key_value &rArr; msgsend
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoshortbuzze
@@ -1462,8 +1464,13 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;work_task
 </UL>
 
-<P><STRONG><a name="[b9]"></a>timeout_polling</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, systemwork.o(i.timeout_polling))
-<BR><BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_task
+<P><STRONG><a name="[b9]"></a>timeout_polling</STRONG> (Thumb, 136 bytes, Stack size 8 bytes, systemwork.o(i.timeout_polling))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = timeout_polling &rArr; twoshortbuzze &rArr; delay_ms
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoshortbuzze
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_off
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_task
 </UL>
 
 <P><STRONG><a name="[b8]"></a>work_task</STRONG> (Thumb, 372 bytes, Stack size 8 bytes, systemwork.o(i.work_task))

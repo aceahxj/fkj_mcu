@@ -271,6 +271,8 @@ void TIM16_IRQHandler(void)
         waitReply.timeCount++;
     if (waitAction.replyFlag)
         waitAction.timeCount++;
+    if (ST_OFFLINE == instState)
+        stopTimeCount++;
 }
 
 /**************************************************************

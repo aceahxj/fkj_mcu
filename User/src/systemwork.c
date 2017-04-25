@@ -338,15 +338,26 @@ static void timeout_polling(void)
             waitReply.replyFlag = FALSE;
         }
     }
+
     if (waitAction.replyFlag) {
         if((waitAction.cmd == PHOTO_CTRL)&&(waitAction.timeCount > 30)) {     //≈ƒ’’≥¨ ±3√Î
             actionState = ST_NO_ACTION;
             waitAction.replyFlag = FALSE;
         }
-        if((waitAction.cmd == PRINT_CTRL)&&(waitAction.timeCount > 300)) {    //≈ƒ’’≥¨ ±30√Î
+        if((waitAction.cmd == PRINT_CTRL)&&(waitAction.timeCount > 300)) {    //¥Ú”°≥¨ ±30√Î
             actionState = ST_NO_ACTION;
             waitAction.replyFlag = FALSE;
         }
+    }
+
+    if (ST_OFFLINE == instState) {
+        if (STOP_TIME_OUT == stopTimeCount) {
+           twoshortbuzze();
+           led_off();          //œ»πÿœ‘ æ
+           instState = ST_STOP;
+        }
+    } else {
+        stopTimeCount = 0;
     }
 }
 
@@ -445,6 +456,7 @@ void reset_charge(void)
 static void key_task(void)
 {
     if (keyHandleInfor.keyType != NONE_KEY) {
+        stopTimeCount = 0;
         if ((ONLINE == wifiState)||(KEY_MAIN == keyHandleInfor.keyValue)) {
             switch (keyHandleInfor.keyValue)
             {
@@ -530,13 +542,13 @@ static void key_task(void)
                         if (LIGHT_WHITE == lightState) {
                             BLUE_ON();
                             lightState = LIGHT_BLUE;
-                        } else if (LIGHT_BLUE == lightState) {
-                            lightState = LIGHT_NULL;
                         } else {
                             WHITE_ON();
                             lightState = LIGHT_WHITE;
                         }
                     }
+                } else if (keyHandleInfor.keyType == LONG_KEY) {
+                    lightState = LIGHT_NULL;
                 }
         		break;
 

@@ -1,10 +1,13 @@
----- cellState.remainCharge Matches (9 in 2 files) ----
-Cmd.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        txdMsg->pkt.msg.para[2] = cellState.remainCharge;
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    cellState.remainCharge = cell_soc_read();
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):	uart1_send_char(((cellState.remainCharge%1000)/100) + 48);
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):	uart1_send_char(((cellState.remainCharge%100)/10) + 48);
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):	uart1_send_char((cellState.remainCharge%10) + 48);
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    if (temp != cellState.remainCharge) {
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        cellState.remainCharge = temp;
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        if ((CHARGE_DONE == cellState.chargeState)||(cellState.remainCharge > 95)) {
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):            if ((CHARGE_DONE == cellState.chargeState)||(cellState.remainCharge > 95))
+---- ST_IDLE Matches (12 in 3 files) ----
+Cmd.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                instState = ST_IDLE;
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                        else if (ST_IDLE == instState)
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if ((ST_WORK == instState)||(ST_IDLE == instState)) {
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if (ST_IDLE == instState) {
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if ((ST_WORK == instState)||(ST_IDLE == instState)) {
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if (ST_IDLE== instState) {
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if (ST_IDLE== instState) {
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if ((ST_IDLE == instState)&&(actionState == ST_NO_ACTION)){
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        case ST_IDLE:               //照片模式
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    instState = ST_IDLE;
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    instState = ST_IDLE;
+Systemwork.h (e:\work\product\fkj\firmware\fkj_mcu\user\inc):    ST_IDLE             = 0x01,            	/*关闭视频,照片模式，要上传的状态*/

@@ -185,6 +185,8 @@ typedef enum
 #define OFFLINE                 0
 #define ONLINE                  1
 
+#define STOP_TIME_OUT           30*60*10                //30分钟
+
 #define BATTERY_LOWEST       11147u                     //电池关机电压3.4V，0.305mV/LSB
 #define BATTERY_LOW          11803u                     //电池退出警告电压3.60V
 #define BATTERY_LOW_HOLD     11311u                     //电池警告电压3.45V
@@ -207,6 +209,7 @@ SYSTEMWORK_EXT  DuckState           duckState;		    //鸭嘴器状态
 SYSTEMWORK_EXT  INT32U              duckCnt;            //鸭嘴器计数
 SYSTEMWORK_EXT  LightState          lightState;         //光照LED状态
 SYSTEMWORK_EXT  StateLedDisp        redLedDisp,greenLedDisp; //状态LED显示控制
+SYSTEMWORK_EXT  INT32U              stopTimeCount;      //停机计时
 
 
 #ifdef SYSTEMWORK_GLOBAL
