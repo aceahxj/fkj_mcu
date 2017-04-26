@@ -1,13 +1,7 @@
----- ST_IDLE Matches (12 in 3 files) ----
-Cmd.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                instState = ST_IDLE;
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                        else if (ST_IDLE == instState)
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if ((ST_WORK == instState)||(ST_IDLE == instState)) {
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if (ST_IDLE == instState) {
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if ((ST_WORK == instState)||(ST_IDLE == instState)) {
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if (ST_IDLE== instState) {
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if (ST_IDLE== instState) {
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    if ((ST_IDLE == instState)&&(actionState == ST_NO_ACTION)){
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):        case ST_IDLE:               //照片模式
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    instState = ST_IDLE;
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                    instState = ST_IDLE;
-Systemwork.h (e:\work\product\fkj\firmware\fkj_mcu\user\inc):    ST_IDLE             = 0x01,            	/*关闭视频,照片模式，要上传的状态*/
+---- twoshortbuzze Matches (6 in 4 files) ----
+Buzzerpwm.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):*  Function Name		 :	 twoshortbuzze
+Buzzerpwm.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):void twoshortbuzze(void)
+Buzzerpwm.h (e:\work\product\fkj\firmware\fkj_mcu\driver\inc):void twoshortbuzze(void);
+Cmd.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):            twoshortbuzze();
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):           twoshortbuzze();
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                            twoshortbuzze();

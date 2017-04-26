@@ -476,9 +476,11 @@ static void key_task(void)
                         if (ONLINE == wifiState)
                             keyHandleInfor.keyCmd = CMD_SHUT_DOWN;
                         else
+                        {
                             twoshortbuzze();
                             led_off();          //œ»πÿœ‘ æ
                             instState = ST_STOP;
+                        }
                     }
                 }
                 break;
