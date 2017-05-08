@@ -1,7 +1,16 @@
----- twoshortbuzze Matches (6 in 4 files) ----
-Buzzerpwm.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):*  Function Name		 :	 twoshortbuzze
-Buzzerpwm.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):void twoshortbuzze(void)
-Buzzerpwm.h (e:\work\product\fkj\firmware\fkj_mcu\driver\inc):void twoshortbuzze(void);
-Cmd.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):            twoshortbuzze();
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):           twoshortbuzze();
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):                            twoshortbuzze();
+---- LedDisp.timeCount Matches (18 in 2 files) ----
+Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):    if (++redLedDisp.timeCount >= timeCount) {
+Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        redLedDisp.timeCount = 0;
+Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):    if (++greenLedDisp.timeCount >= timeCount) {
+Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        greenLedDisp.timeCount = 0;
+Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        if (redLedDisp.timeCount > greenLedDisp.timeCount) {
+Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):            greenLedDisp.timeCount = redLedDisp.timeCount;
+Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):            redLedDisp.timeCount = greenLedDisp.timeCount;
+Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        redLedDisp.timeCount = 0;
+Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        redLedDisp.timeCount = 0;
+Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        greenLedDisp.timeCount = 0;
+Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        greenLedDisp.timeCount = 0;
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    redLedDisp.timeCount = 0;
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    greenLedDisp.timeCount = 0;
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    redLedDisp.timeCount = 0;
+Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    greenLedDisp.timeCount = 0;

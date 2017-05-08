@@ -238,152 +238,162 @@
         <Ww>
           <count>0</count>
           <WinNumber>2</WinNumber>
-          <ItemText>lcdclass,0x0A</ItemText>
+          <ItemText>redLedSaveType</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>2</WinNumber>
-          <ItemText>teststage</ItemText>
+          <ItemText>lcdclass,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>2</WinNumber>
-          <ItemText>bklighttype</ItemText>
+          <ItemText>teststage</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>2</WinNumber>
-          <ItemText>lastrecord_dataaddr</ItemText>
+          <ItemText>bklighttype</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>2</WinNumber>
-          <ItemText>resultrecord_totalnum</ItemText>
+          <ItemText>lastrecord_dataaddr</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>2</WinNumber>
-          <ItemText>\\TFT_stm32f0\../Driver/src/bsp.c\mutex</ItemText>
+          <ItemText>resultrecord_totalnum</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>2</WinNumber>
-          <ItemText>TEMPERATURE,0x0A</ItemText>
+          <ItemText>\\TFT_stm32f0\../Driver/src/bsp.c\mutex</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>2</WinNumber>
-          <ItemText>pressque,0x0A</ItemText>
+          <ItemText>TEMPERATURE,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
           <WinNumber>2</WinNumber>
-          <ItemText>g_flashdatainfo,0x10</ItemText>
+          <ItemText>pressque,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>9</count>
           <WinNumber>2</WinNumber>
-          <ItemText>UartRxBuf</ItemText>
+          <ItemText>g_flashdatainfo,0x10</ItemText>
         </Ww>
         <Ww>
           <count>10</count>
           <WinNumber>2</WinNumber>
-          <ItemText>factorydata,0x0A</ItemText>
+          <ItemText>UartRxBuf</ItemText>
         </Ww>
         <Ww>
           <count>11</count>
           <WinNumber>2</WinNumber>
-          <ItemText>stationinfo</ItemText>
+          <ItemText>factorydata,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>12</count>
           <WinNumber>2</WinNumber>
-          <ItemText>curtuser</ItemText>
+          <ItemText>stationinfo</ItemText>
         </Ww>
         <Ww>
           <count>13</count>
           <WinNumber>2</WinNumber>
-          <ItemText>FLOWFACTOR</ItemText>
+          <ItemText>curtuser</ItemText>
         </Ww>
         <Ww>
           <count>14</count>
           <WinNumber>2</WinNumber>
-          <ItemText>FLOWINDEX</ItemText>
+          <ItemText>FLOWFACTOR</ItemText>
         </Ww>
         <Ww>
           <count>15</count>
           <WinNumber>2</WinNumber>
-          <ItemText>g_resultclass</ItemText>
+          <ItemText>FLOWINDEX</ItemText>
         </Ww>
         <Ww>
           <count>16</count>
           <WinNumber>2</WinNumber>
-          <ItemText>gc65workstate</ItemText>
+          <ItemText>g_resultclass</ItemText>
         </Ww>
         <Ww>
           <count>17</count>
           <WinNumber>2</WinNumber>
-          <ItemText>g_resultpoint</ItemText>
+          <ItemText>gc65workstate</ItemText>
         </Ww>
         <Ww>
           <count>18</count>
           <WinNumber>2</WinNumber>
-          <ItemText>g_dbmvalue,0x0A</ItemText>
+          <ItemText>g_resultpoint</ItemText>
         </Ww>
         <Ww>
           <count>19</count>
           <WinNumber>2</WinNumber>
-          <ItemText>cmddatauptype</ItemText>
+          <ItemText>g_dbmvalue,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>20</count>
           <WinNumber>2</WinNumber>
-          <ItemText>instinfo</ItemText>
+          <ItemText>cmddatauptype</ItemText>
         </Ww>
         <Ww>
           <count>21</count>
           <WinNumber>2</WinNumber>
-          <ItemText>\\TFT_stm32f0\../User/src/systemwork.c\lcdclass,0x0A</ItemText>
+          <ItemText>instinfo</ItemText>
         </Ww>
         <Ww>
           <count>22</count>
           <WinNumber>2</WinNumber>
-          <ItemText>testrecorddata,0x0A</ItemText>
+          <ItemText>\\TFT_stm32f0\../User/src/systemwork.c\lcdclass,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>23</count>
           <WinNumber>2</WinNumber>
-          <ItemText>curvestype</ItemText>
+          <ItemText>testrecorddata,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>24</count>
           <WinNumber>2</WinNumber>
-          <ItemText>MRBuffer</ItemText>
+          <ItemText>curvestype</ItemText>
         </Ww>
         <Ww>
           <count>25</count>
           <WinNumber>2</WinNumber>
-          <ItemText>\\TFT_stm32f0\../User/src/msg.c\blestatus</ItemText>
+          <ItemText>MRBuffer</ItemText>
         </Ww>
         <Ww>
           <count>26</count>
           <WinNumber>2</WinNumber>
-          <ItemText>g_severconnet</ItemText>
+          <ItemText>\\TFT_stm32f0\../User/src/msg.c\blestatus</ItemText>
         </Ww>
         <Ww>
           <count>27</count>
           <WinNumber>2</WinNumber>
-          <ItemText>g_timeoutflag</ItemText>
+          <ItemText>g_severconnet</ItemText>
         </Ww>
         <Ww>
           <count>28</count>
           <WinNumber>2</WinNumber>
-          <ItemText>UartTxMsg</ItemText>
+          <ItemText>g_timeoutflag</ItemText>
         </Ww>
         <Ww>
           <count>29</count>
           <WinNumber>2</WinNumber>
+          <ItemText>UartTxMsg</ItemText>
+        </Ww>
+        <Ww>
+          <count>30</count>
+          <WinNumber>2</WinNumber>
           <ItemText>at_cmd_buf</ItemText>
+        </Ww>
+        <Ww>
+          <count>31</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>redLedSaveType</ItemText>
         </Ww>
       </WatchWindow2>
       <MemoryWindow1>

@@ -123,7 +123,7 @@ static KeyType key_driver(void)
 ***************************************************************/
 void red_led_flash(INT16U timeCount)
 {
-    if (++redLedDisp.timeCount == timeCount) {
+    if (++redLedDisp.timeCount >= timeCount) {
         redLedDisp.timeCount = 0;
         if (LED_ON == redLedDisp.state) {
             LED_RED_OFF();
@@ -143,7 +143,7 @@ void red_led_flash(INT16U timeCount)
 ***************************************************************/
 void green_led_flash(INT16U timeCount)
 {
-    if (++greenLedDisp.timeCount == timeCount) {
+    if (++greenLedDisp.timeCount >= timeCount) {
         greenLedDisp.timeCount = 0;
         if (LED_ON == greenLedDisp.state) {
             LED_GREEN_OFF();

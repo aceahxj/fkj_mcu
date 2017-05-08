@@ -734,9 +734,9 @@ void led_manage(void)
     } else {
         if (selfInfor.fault) {
             redLedDisp.ledType = LED_ON;         //自检异常--红色常量
-        } else if (cellState.voltage > BATTERY_LOW) {
+        } else if (cellState.remainCharge > 0) {
             redLedDisp.ledType = LED_OFF;        //正常--红色灭
-        } else if (cellState.voltage < BATTERY_LOW_HOLD) {
+        } else if (cellState.remainCharge == 0) {
             redLedDisp.ledType = LED_FLASH100;   //电量低--红色100mS闪烁
         }
     }
