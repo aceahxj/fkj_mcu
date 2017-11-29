@@ -51,16 +51,16 @@
 #define SENSOR_EN()             (GPIOF->IDR  & GPIO_Pin_0)      //PF0，0--关闭，1--开启
 
 //主板电源
-#define MB_POWER_OFF()              GPIO_WriteBit(GPIOB,GPIO_Pin_12,Bit_RESET)
-#define MB_POWER_ON()               GPIO_WriteBit(GPIOB,GPIO_Pin_12,Bit_SET)
+#define MB_POWER_OFF()              GPIO_WriteBit(GPIOB,GPIO_Pin_15,Bit_RESET)
+#define MB_POWER_ON()               GPIO_WriteBit(GPIOB,GPIO_Pin_15,Bit_SET)
 
 //充电开关
 #define CHARGE_ON()		  	        GPIO_WriteBit(GPIOB,GPIO_Pin_10,Bit_RESET)
 #define CHARGE_OFF()		  	    GPIO_WriteBit(GPIOB,GPIO_Pin_10,Bit_SET)
 
 //2G电源控制,上电到PWRKEY下拉不小于30mS
-#define GC65_POWER_OFF()            GPIO_WriteBit(GPIOB,GPIO_Pin_15,Bit_RESET)
-#define GC65_POWER_ON()             GPIO_WriteBit(GPIOB,GPIO_Pin_15,Bit_SET)
+#define GC65_POWER_OFF()            GPIO_WriteBit(GPIOB,GPIO_Pin_12,Bit_RESET)
+#define GC65_POWER_ON()             GPIO_WriteBit(GPIOB,GPIO_Pin_12,Bit_SET)
 #define GC65_PWRKEY_ON()            GPIO_WriteBit(GPIOF,GPIO_Pin_6,Bit_RESET)         //OC输出
 #define GC65_PWRKEY_OFF()           GPIO_WriteBit(GPIOF,GPIO_Pin_6,Bit_SET)
 
@@ -89,6 +89,8 @@
                                         GPIO_WriteBit(GPIOB,GPIO_Pin_3,Bit_RESET);} while(0)
 #define BLUE_ON()                   do {GPIO_WriteBit(GPIOB,GPIO_Pin_3,Bit_SET);\
                                         GPIO_WriteBit(GPIOB,GPIO_Pin_4,Bit_RESET);} while(0)
+#define BOTH_ON()                   do {GPIO_WriteBit(GPIOB,GPIO_Pin_3,Bit_SET);\
+                                        GPIO_WriteBit(GPIOB,GPIO_Pin_4,Bit_SET);} while(0)
 #define BOTH_OFF()                  do {GPIO_WriteBit(GPIOB,GPIO_Pin_3,Bit_RESET);\
                                         GPIO_WriteBit(GPIOB,GPIO_Pin_4,Bit_RESET);} while(0)
 

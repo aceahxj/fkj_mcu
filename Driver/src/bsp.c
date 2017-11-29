@@ -145,16 +145,16 @@ void GPIO_Configuration(void)
     LED_RED_OFF();
     LED_GREEN_OFF();
 	//OUT   LED_RED--PB1,LED_GREEN--PB2
-	//OUT   MB_POWER--PB12,CHARGE--PB10,SENSOR_POWER--PB11,LED_WHITE--PB4,LED_BLUE--PB3
+	//OUT   MB_POWER--PB15,CHARGE--PB10,SENSOR_POWER--PB11,LED_WHITE--PB4,LED_BLUE--PB3
 	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | \
-	                           GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12;
+	                           GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_15;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
     GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
     GPIO_Init(GPIOB,&GPIO_InitStruct);
 
-    //OUT   GC65_POWER--PB15
-    GPIO_InitStruct.GPIO_Pin = GPIO_Pin_15;
+    //OUT   GC65_POWER--PB12
+    GPIO_InitStruct.GPIO_Pin = GPIO_Pin_12;
     GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
     GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
     GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;

@@ -34,6 +34,8 @@
 #include "buzzerpwm.h"
 #include "flash.h"
 
+
+#define LED_NO_BLUE    1    //没有蓝光控制，两对LED同时开关
 /*
 *********************************************************************************************************
 *                                           FUNCTION PROTOTYPES
@@ -270,10 +272,14 @@ void charge_vol(void)
 ***************************************************************/
 static void lightOn(void)
 {
-    if (LIGHT_WHITE == lightState)
-        WHITE_ON();
-    else
-        BLUE_ON();
+    if (LED_NO_BLUE) {
+        BOTH_ON();
+    } else {
+        if (LIGHT_WHITE == lightState)
+            WHITE_ON();
+        else
+            BLUE_ON();
+    }
     LIGHT_ON();
 }
 
@@ -541,12 +547,17 @@ static void key_task(void)
                 case  KEY_LED:
                 if (keyHandleInfor.keyType == SIGNLE_KEY) {
                     if (ST_WORK == instState) {
-                        if (LIGHT_WHITE == lightState) {
-                            BLUE_ON();
-                            lightState = LIGHT_BLUE;
-                        } else {
-                            WHITE_ON();
+                        if (LED_NO_BLUE) {
+                            BOTH_ON();//单击全开
                             lightState = LIGHT_WHITE;
+                        } else {
+                            if (LIGHT_WHITE == lightState) {
+                                BLUE_ON();
+                                lightState = LIGHT_BLUE;
+                            } else {
+                                WHITE_ON();
+                                lightState = LIGHT_WHITE;
+                            }
                         }
                     }
                 } else if (keyHandleInfor.keyType == LONG_KEY) {

@@ -1,16 +1,3 @@
----- LedDisp.timeCount Matches (18 in 2 files) ----
-Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):    if (++redLedDisp.timeCount >= timeCount) {
-Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        redLedDisp.timeCount = 0;
-Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):    if (++greenLedDisp.timeCount >= timeCount) {
-Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        greenLedDisp.timeCount = 0;
-Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        if (redLedDisp.timeCount > greenLedDisp.timeCount) {
-Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):            greenLedDisp.timeCount = redLedDisp.timeCount;
-Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):            redLedDisp.timeCount = greenLedDisp.timeCount;
-Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        redLedDisp.timeCount = 0;
-Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        redLedDisp.timeCount = 0;
-Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        greenLedDisp.timeCount = 0;
-Interrupt.c (e:\work\product\fkj\firmware\fkj_mcu\driver\src):        greenLedDisp.timeCount = 0;
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    redLedDisp.timeCount = 0;
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    greenLedDisp.timeCount = 0;
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    redLedDisp.timeCount = 0;
-Systemwork.c (e:\work\product\fkj\firmware\fkj_mcu\user\src):    greenLedDisp.timeCount = 0;
+---- BOTH_ON Matches (2 in 2 files) ----
+E:\work\product\fkj\firmware\fkj_mcu\Driver\inc\bsp.h:91
+E:\work\product\fkj\firmware\fkj_mcu\User\src\systemwork.c:276
